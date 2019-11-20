@@ -35,7 +35,7 @@ omero_web_setup_nginx: true
 omero_web_python3: false
 
 # # Make bin/omero a wrapper script for the virtualenv omero or copy the original bin/omero
-omero_web_python3_replace_omero: false
+omero_web_python3_replace_omero: true
 
 # List of additional Python packages to be installed into virtualenv
 # (python 3 only)
