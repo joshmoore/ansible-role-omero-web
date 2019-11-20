@@ -130,6 +130,20 @@
       exec {{ omero_web_virtualenv_basedir }}/bin/omero "$@"
     dest: "{{ omero_web_omero_command }}"
     mode: "0755"
+  when: omero_web_python3_replace_omero
+  notify:
+    - omero-web rewrite omero-web configuration
+    - omero-web restart omero-web
+
+# if a replace is not wanted, then copy.
+- name: omero web | copy bin omero
+  become: true
+  copy:
+    remote_src: yes
+    src: {{ omero_web_virtualenv_basedir }}/bin/omero
+    dest: "{{ omero_web_omero_command }}"
+    mode: "0755"
+  when: not omero_web_python3_replace_omero
   notify:
     - omero-web rewrite omero-web configuration
     - omero-web restart omero-web
